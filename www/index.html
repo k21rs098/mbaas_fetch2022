@@ -19,8 +19,11 @@
       var testClass = new TestClass();
       var key = "text";
       var value = $("#value").val();
+      var key2= "score";
+      var score = $("#score").val();
       // レコードのフィールドと値を設定
       testClass.set(key, value);
+      testClass.set(key2,score);
       // レコードをデータベースに登録
       testClass.save()
       .then(function(m) {
@@ -36,8 +39,8 @@
         TestClass.fetch()
         .then(function(results){
             var data= results.get("text");
-            var update=results.get("updateDate");
-            $("#message").html(data + ":" + update);
+            var point=results.get("score");
+            $("#message").html(data + ":" + point);
         })
     }
 
@@ -49,12 +52,23 @@
             for(var i= 0; i< results.length;i++){
                 var data = results[i].get("text");
                 var update = results[i].get("updateDate");
-                msg +="<tr><td>"+data +"</td><td>"  + update+ "</td></tr>";
+                var point = results[i].get("score");
+                msg +="<tr><td>"+data +"</td><td>"  + update+ "</td><td>" + point +"</td></tr>";
             }
             msg += "</table>"
             $("#message").html(msg);
         })
 
+    }
+
+    function newmsg(){
+        var testClass = ncmb.DataStore("FetchTest");
+        TestClass.fetch()
+        .then(function(results){
+            var data= results.get("text");
+            var point=results.get("score");
+            $("#message").html(data + ":" + point);
+        })
     }
     </script>
 </head>
@@ -64,10 +78,16 @@
     <label for="value">Value:</label>
     <input id="value" type="text" value="Hello, mBaaS!">
   </div>
+  <div>
+    <label for = "score"> score:</label>
+    <input id = "score" type = "number" socre="point">
+  </div>
   <div id="button">
     <button id="btnA" class="btn" onclick="register()">Register</button>
     <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
     <button id="btnc" class="btn" onclick="fetchAll()">Fetch All</button>
+    <button id="btnD" class="btn" onclick="newmsg()">ordert</button>
+    <button id="btnE" class="btn" onclick="nnn()">orderf</button>
   </div>
   <div id="message">message area</div>
 </body>
