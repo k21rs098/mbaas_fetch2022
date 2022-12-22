@@ -61,16 +61,6 @@
 
     }
 
-    function ordertq(){
-        var testClass = ncmb.DataStore("FetchTest");
-        TestClass.fetch()
-        .then(function(results){
-            var data= results.get("text");
-            var point=results.get("score");
-            $("#message").html(data + ":" + point);
-        })
-    }
-
     function ordert(){
         var TestClass = ncmb.DataStore("FetchTest");
         TestClass.fetchAll()
