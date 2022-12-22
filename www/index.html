@@ -61,7 +61,7 @@
 
     }
 
-    function newmsg(){
+    function ordertq(){
         var testClass = ncmb.DataStore("FetchTest");
         TestClass.fetch()
         .then(function(results){
@@ -69,6 +69,23 @@
             var point=results.get("score");
             $("#message").html(data + ":" + point);
         })
+    }
+
+    function ordert(){
+        var TestClass = ncmb.DataStore("FetchTest");
+        TestClass.fetchAll()
+        .then(function(results){
+            var msg = "<table><tr><th>message</th><th>update</th><th>count</th></tr>";
+            for(var i= 0; i< results.length;i++){
+                var data = results[i].get("text");
+                var update = results[i].get("updateDate");
+                var point = results[i].get("score");
+                msg +="<tr><td>"+data +"</td><td>"  + update+ "</td><td>" + point +"</td></tr>";
+            }
+            msg += "</table>"
+            $("#message").html(msg);
+        })
+
     }
     </script>
 </head>
@@ -79,14 +96,14 @@
     <input id="value" type="text" value="Hello, mBaaS!">
   </div>
   <div>
-    <label for = "score"> score:</label>
+    <label for = "score"> count:</label>
     <input id = "score" type = "number" socre="point">
   </div>
   <div id="button">
     <button id="btnA" class="btn" onclick="register()">Register</button>
     <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
     <button id="btnc" class="btn" onclick="fetchAll()">Fetch All</button>
-    <button id="btnD" class="btn" onclick="newmsg()">ordert</button>
+    <button id="btnD" class="btn" onclick="ordert()">ordert</button>
     <button id="btnE" class="btn" onclick="nnn()">orderf</button>
   </div>
   <div id="message">message area</div>
