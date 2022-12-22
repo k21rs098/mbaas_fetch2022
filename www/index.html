@@ -77,6 +77,22 @@
         })
 
     }
+    function orderf(){
+        var TestClass = ncmb.DataStore("FetchTest");
+        TestClass.order("score",false).fetchAll()
+        .then(function(results){
+            var msg = "<table><tr><th>message</th><th>update</th><th>count</th></tr>";
+            for(var i= 0; i< results.length;i++){
+                var data = results[i].get("text");
+                var update = results[i].get("updateDate");
+                var point = results[i].get("score");
+                msg +="<tr><td>"+data +"</td><td>"  + update+ "</td><td>" + point +"</td></tr>";
+            }
+            msg += "</table>"
+            $("#message").html(msg);
+        })
+
+    }
     </script>
 </head>
 <body>
@@ -94,7 +110,7 @@
     <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
     <button id="btnc" class="btn" onclick="fetchAll()">Fetch All</button>
     <button id="btnD" class="btn" onclick="ordert()">ordert</button>
-    <button id="btnE" class="btn" onclick="nnn()">orderf</button>
+    <button id="btnE" class="btn" onclick="orderf()">orderf</button>
   </div>
   <div id="message">message area</div>
 </body>
