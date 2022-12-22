@@ -63,7 +63,7 @@
 
     function ordert(){
         var TestClass = ncmb.DataStore("FetchTest");
-        TestClass.fetchAll()
+        TestClass.order("score",true).fetchAll()
         .then(function(results){
             var msg = "<table><tr><th>message</th><th>update</th><th>count</th></tr>";
             for(var i= 0; i< results.length;i++){
