@@ -94,7 +94,22 @@
 
     }
 
-    
+    function newmsg(){
+        var TestClass = ncmb.DataStore("FetchTest");
+        TestClass.fetchAll()
+        .then(function(results){
+            var msg = "<table><tr><th>message</th><th>Update Data</th><th>couct</th></tr>";
+            var data = results[results.length-1].get("text");
+            var update = results[results.length-1].get("updateDate");
+            var point = results[results.length-1].get("score");
+            msg +="<tr><td>"+data +"</td><td>"  + update+ "</td><td>" + point +"</td></tr>";
+            msg += "</table>"
+            $("#message").html(msg);
+        })
+
+    }
+
+
     </script>
 </head>
 <body>
