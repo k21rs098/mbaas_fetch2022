@@ -98,7 +98,7 @@
         var TestClass = ncmb.DataStore("FetchTest");
         TestClass.fetchAll()
         .then(function(results){
-            var msg = "<table><tr><th>message</th><th>Create time</th><th>count</th></tr>";
+            var msg = "<table><tr><th>text</th><th>Create time</th><th>count</th></tr>";
             var data = results[results.length-1].get("text");
             var update = results[results.length-1].get("createDate");
             var point = results[results.length-1].get("score");
